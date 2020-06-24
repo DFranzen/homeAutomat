@@ -21,7 +21,7 @@ Home Automat is a smarthome hub, which unifies the way you talk to your smarthom
 The homeAutomat is mainly a bash script, which can be called for every command that should be send to any of the configured devices. It does not need to be installed. However for maintaining the connections and to provide reverse IP Lookup, the script connectionCheck.sh should be executed in the background periodically (1/min). This is achieved easiest by adding it to the crontab:
 - input into a terminal: crontab -e
 - add the following line to the bottom of the file:
- * *  *   *   *     /home/pi/homeAutomat/connectionCheck.sh
+ \* \*  \*   \*   \*     /home/pi/homeAutomat/connectionCheck.sh
 
 The SSH Plugin uses PrivatKeyAuthentication. In order for this to work an SSH key needs to be created (ssh-keygen) and then authenticated on all SSH devices (ssh-copy-id). This has the added benefit, that no cleartext passwords have to be stored in the configuration files for homeAutomat.
 After having copied the key, try to connect manually via SSH once to prevent any problems with the SSH-fingerprint.
