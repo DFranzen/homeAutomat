@@ -1,0 +1,51 @@
+unset deviceList
+unset devices
+declare -g -A deviceList
+declare -g -a devices
+
+ha_user="pi"
+
+devices+=('laptop')
+deviceList["laptop|type"]="ssh"
+deviceList["laptop|ips"]="192.168.0.1|192.168.0.2"
+deviceList["laptop|macs"]="00:00:00:00:00:AA|00:00:00:00:AA:00"
+deviceList["laptop|user"]="user"
+deviceList["laptop|wol"]="true"
+deviceList["laptop|playback"]="true"
+deviceList["laptop|commands|skip"]="./skip.sh"
+
+devices+=('tv')
+deviceList["tv|type"]="viera"
+deviceList["tv|ips"]="192.168.0.3"
+deviceList["tv|macs"]="00:00:00:00:AA:AA"
+deviceList["tv|wol"]="true"
+deviceList["tv|playback"]="true"
+
+devices+=('projector')
+deviceList["projector|type"]="lirc"
+deviceList["projector|macs"]="00:00:00:AA:00:00"
+deviceList["projector|ips"]="192.168.0.4"
+deviceList["projector|__ON__|repeat"]=2
+
+devices+=('AC')
+deviceList["AC|type"]="lirc"
+
+devices+=('sonoff')
+deviceList["sonoff|type"]="http"
+deviceList["sonoff|ips"]="192.168.0.5"
+deviceList["sonoff|macs"]="00:00:00:AA:00:AA"
+deviceList["sonoff|cmd"]="/cm?cmnd=__CMD__"
+deviceList["sonoff|cmd|__ON__"]="Power%20On"
+deviceList["sonoff|cmd|__OFF__"]="Power%20off"
+
+devices+=('SmartSocket')
+deviceList['SmartySocket|type']='python'
+deviceList['SmartySocket|macs']='00:00:00:AA:AA:00'
+deviceList['SmartySocket|ips']='192.168.0.6'
+deviceList['SmartySocket|cmd']='scripts/kasa.py -t __IP__ -c __CMD__'
+deviceList['SmartySocket|cmd|__ON__']='on'
+deviceList['SmartySocket|cmd|__OFF__']='off'
+
+
+export devices
+export deviceList
